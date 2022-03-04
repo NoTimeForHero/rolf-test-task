@@ -45,6 +45,7 @@ module.exports = {
     ],
 
     rules: {
+        "max-len": ["warn", { "code": 160 }],
         "react/jsx-filename-extension": "off"
         //can be configured later
     }
