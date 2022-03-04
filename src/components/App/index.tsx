@@ -1,25 +1,29 @@
 import React from 'react';
-import logo from '../../logo.svg';
-import './index.css';
+import { Alert, Container } from '@mui/material';
+import styles from './index.module.scss';
+import Question from '../Question';
 
 function App() {
+  const queProps = {
+    userName: 'Павел Дуров',
+    carName: 'Bugatti Veyron',
+    date: '01.01.2001 19:00',
+    message: 'Hello world!',
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container maxWidth="lg" className={styles.app}>
+
+      <div className={styles.header}>Вопросы по автомобилям</div>
+
+      <Question {...queProps} />
+      <Question {...queProps} />
+      <Question {...queProps} />
+
+      <div className="App">
+        <Alert severity="error">This is an error alert — check it out!</Alert>
+      </div>
+    </Container>
   );
 }
 

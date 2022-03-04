@@ -1,0 +1,29 @@
+
+.root {
+  margin: 30px 0;
+  $text-margin-left: 15px;
+
+  .header {
+    font-size: 18px;
+    font-weight: bold;
+
+    & .addInfo {
+      display: inline-block;
+      color: darkred;
+      padding-left: 15px;
+    }
+  }
+
+  & .datetime {
+    color: gray;
+    margin-top: 5px;
+    margin-left: $text-margin-left;
+    font-weight: normal;
+    font-size: 14px;
+  }
+
+  .message {
+    margin-top: 10px;
+    margin-left: $text-margin-left;
+  }
+}
