@@ -17,7 +17,7 @@ function AddQuestionForm() {
   const dispatch = useDispatch();
   const f = useFormik({
     initialValues: {
-      name: '', email: '', carMark: '', carModel: '', message: '',
+      text: '', email: '', carBrand: '', carModel: '',
     } as TypeQuestion,
     validationSchema: QuestionValidation,
     validateOnChange: false,
@@ -46,10 +46,10 @@ function AddQuestionForm() {
       <div className={styles.inputGroup}>
         <TextField {...setProps(f.values.name, f.errors.name, 'name', 'Имя')} />
         <TextField {...setProps(f.values.email, f.errors.email, 'email', 'EMail')} />
-        <TextField {...setProps(f.values.carMark, f.errors.carMark, 'carMark', 'Марка авто')} />
+        <TextField {...setProps(f.values.carBrand, f.errors.carBrand, 'carBrand', 'Марка авто')} />
         <TextField {...setProps(f.values.carModel, f.errors.carModel, 'carModel', 'Модель авто')} />
       </div>
-      <TextField {...setProps(f.values.message, f.errors.message, 'message', 'Текст вопроса')} className={styles.textarea} multiline={true} />
+      <TextField {...setProps(f.values.text, f.errors.text, 'text', 'Текст вопроса')} className={styles.textarea} multiline={true} />
       {isLoading && <div className={styles.spinner}><CircularProgress /></div>}
       {!isLoading && <div className={styles.buttons}>
         <Button type="submit" variant="outlined" color="success" disabled={!canSubmit}>Отправить</Button>

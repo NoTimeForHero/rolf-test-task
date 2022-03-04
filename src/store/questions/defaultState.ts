@@ -9,9 +9,9 @@ const initialState = {
   isLoading: false,
   error: null,
   values: List<TypeQuestion>([
-    { name: 'Александра', email: '', carMark: 'Volkswagen', carModel: 'Polo IV', message: testMessage },
-    { name: 'Евгений', email: '', carMark: 'Hyundai', carModel: 'Creta', message: testMessage },
-    { name: 'Павел', email: '', carMark: 'Mitsubishi', carModel: 'Pajero', message: testMessage },
+    { name: 'Александра', email: '', carBrand: 'Volkswagen', carModel: 'Polo IV', text: testMessage },
+    { name: 'Евгений', email: '', carBrand: 'Hyundai', carModel: 'Creta', text: testMessage },
+    { name: 'Павел', email: '', carBrand: 'Mitsubishi', carModel: 'Pajero', text: testMessage },
   ]),
 };
 

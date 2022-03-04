@@ -2,12 +2,15 @@ import { Dispatch } from 'redux';
 import { TypeQuestion } from '../../components/AddQuestionForm/types';
 import { ActionType, ReducerType } from './types';
 import initialState from './defaultState';
+import ajaxJSON from '../../utils/ajax';
 
 export const AddQuestion = (question: TypeQuestion, onSuccess: () => void) => async (dispatch: Dispatch<ReducerType>) => {
   try {
     dispatch({ type: ActionType.OnStarted });
+    // Симуляция задержки
     // eslint-disable-next-line no-promise-executor-return
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    // await new Promise((resolve) => setTimeout(resolve, 2000));
+    await ajaxJSON('http://httpbin.org/post', question);
     dispatch({ type: ActionType.OnComplted, payload: question });
     onSuccess?.call(null);
   } catch (ex) {
