@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
+import * as Yup from 'yup';
+import yup_locale_ru from './utils/yup_locale_ru';
 import App from './components/App';
 import reportWebVitals from './utils/reportWebVitals';
+
+Yup.setLocale(yup_locale_ru);
 
 ReactDOM.render(
   <React.StrictMode>
