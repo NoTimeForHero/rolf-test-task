@@ -1,10 +1,23 @@
+import { TypeQuestion } from '../../components/AddQuestionForm/types';
+
 export enum ActionType {
-  OnStarted,
-  OnComplted,
-  OnFailed,
+  OnStarted = 'OnStarted',
+  OnComplted = 'OnComplted',
+  OnFailed = 'OnFailed',
 }
 
-export interface ReducerType {
-  type: ActionType,
-  payload?: any
+export type ReducerType = ReducerTypeStarted | ReducerTypeFailed | ReducerTypeCompleted;
+
+interface ReducerTypeStarted {
+  type: ActionType.OnStarted
+}
+
+interface ReducerTypeFailed {
+  type: ActionType.OnFailed,
+  error: any,
+}
+
+interface ReducerTypeCompleted {
+  type: ActionType.OnComplted,
+  payload: TypeQuestion
 }

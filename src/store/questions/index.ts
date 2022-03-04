@@ -17,7 +17,7 @@ export const AddQuestion = (question: TypeQuestion, onSuccess: () => void) => as
     dispatch({ type: ActionType.OnComplted, payload: question });
     onSuccess?.call(null);
   } catch (ex) {
-    dispatch({ type: ActionType.OnFailed, payload: ex });
+    dispatch({ type: ActionType.OnFailed, error: ex });
     // eslint-disable-next-line no-console
     console.error(ex);
   }
@@ -29,7 +29,7 @@ export const questionReducer = (state = initialState, action : ReducerType) => {
     case ActionType.OnStarted:
       return { ...state, isLoading: true, error: null };
     case ActionType.OnFailed:
-      return { ...state, isLoading: false, error: action.payload };
+      return { ...state, isLoading: false, error: action.error };
     case ActionType.OnComplted:
       return {
         ...state, isLoading: false, error: null, values: state.values.unshift(action.payload as TypeQuestion),
