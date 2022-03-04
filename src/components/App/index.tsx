@@ -1,7 +1,8 @@
 import React from 'react';
-import { Alert, Container } from '@mui/material';
+import { Container } from '@mui/material';
 import styles from './index.module.scss';
 import Question from '../Question';
+import AddQuestionForm from '../AddQuestionForm';
 
 function App() {
   const queProps = {
@@ -13,16 +14,11 @@ function App() {
 
   return (
     <Container maxWidth="lg" className={styles.app}>
-
       <div className={styles.header}>Вопросы по автомобилям</div>
-
       <Question {...queProps} />
       <Question {...queProps} />
       <Question {...queProps} />
-
-      <div className="App">
-        <Alert severity="error">This is an error alert — check it out!</Alert>
-      </div>
+      <AddQuestionForm />
     </Container>
   );
 }

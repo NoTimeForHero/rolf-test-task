@@ -1,0 +1,35 @@
+
+$input-margin: 10px;
+
+.root {
+  max-width: 500px;
+}
+
+.header {
+  margin: 10px 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: royalblue;
+}
+
+.inputGroup {
+  display: flex;
+  flex-wrap: wrap;
+
+  .input {
+    margin: $input-margin;
+    flex: 1 0 45%;
+  }
+}
+
+.textarea {
+  margin: $input-margin !important;
+  // Костыль, чтобы избежать головной боли с переопределением внтуренних стилей MUI
+  width: calc(100% - #{$input-margin} * 2);
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin: $input-margin;
+}
