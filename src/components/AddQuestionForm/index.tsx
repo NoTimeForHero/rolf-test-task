@@ -26,7 +26,8 @@ function AddQuestionForm() {
       dispatch(AddQuestion(values, resetForm));
     },
   });
-  const canSubmit = useMemo(() => QuestionValidationRequiredFieldCount === Object.values(f.values).filter((x: string) => x.length > 0).length, [f]);
+  const canSubmit = useMemo(() => QuestionValidationRequiredFieldCount
+    === Object.values(f.values).filter((x: string) => x.length > 0).length, [f]);
   const setProps = (valueKey: string | undefined, errorKey: string | undefined, name: string, label: string) => ({
     name,
     label,
