@@ -3,6 +3,7 @@
 Стандартная, как для любого другого проекта на Create React App:
 ### `npm install`
 ### `npm run start`
+### `npm run test`
 
 ## Структура проекта
 
