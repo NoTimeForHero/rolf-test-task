@@ -9,7 +9,6 @@ export type TypeQuestion = {
   message: string,
   date?: string,
 };
-export type SubmitHandler = (values: TypeQuestion) => Promise<void>;
 
 export const QuestionValidation : Yup.SchemaOf<TypeQuestion> = Yup.object({
   name: Yup.string().min(2).max(30).matches(/[а-яА-Я]+/, 'Только русские буквы').required(),

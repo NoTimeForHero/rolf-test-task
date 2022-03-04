@@ -1,20 +1,20 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Button, TextField, CircularProgress, Alert,
 } from '@mui/material';
 import { useFormik } from 'formik';
+
 import styles from './index.module.scss';
 import {
-  TypeQuestion, SubmitHandler, QuestionValidation, QuestionValidationRequiredFieldCount,
+  TypeQuestion, QuestionValidation, QuestionValidationRequiredFieldCount,
 } from './types';
+import { RootState } from '../../store/root';
+import { AddQuestion } from '../../store/questions';
 
-function AddQuestionForm({
-  onSubmit = undefined,
-} : {
-  onSubmit?: SubmitHandler | undefined,
-}) {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<any>(undefined);
+function AddQuestionForm() {
+  const { isLoading, error } = useSelector((state: RootState) => state.questions);
+  const dispatch = useDispatch();
   const f = useFormik({
     initialValues: {
       name: '', email: '', carMark: '', carModel: '', message: '',
@@ -23,17 +23,7 @@ function AddQuestionForm({
     validateOnChange: false,
     validateOnBlur: false,
     onSubmit: async (values: TypeQuestion, { resetForm }) => {
-      try {
-        setError(null);
-        setIsLoading(true);
-        await onSubmit?.call(null, values);
-        resetForm();
-      } catch (ex: any) {
-        setError(ex?.toString());
-        throw ex;
-      } finally {
-        setIsLoading(false);
-      }
+      dispatch(AddQuestion(values, resetForm));
     },
   });
   const canSubmit = useMemo(() => QuestionValidationRequiredFieldCount === Object.values(f.values).filter((x: string) => x.length > 0).length, [f]);
