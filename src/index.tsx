@@ -2,18 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as Yup from 'yup';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
 
 import './index.scss';
 import yup_locale_ru from './utils/yup_locale_ru';
 import App from './components/App';
 import reportWebVitals from './utils/reportWebVitals';
 import { rootReducer } from './store/root';
+import { initializeStore } from './store';
 
 Yup.setLocale(yup_locale_ru);
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = initializeStore(rootReducer);
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   Button, TextField, CircularProgress, Alert,
 } from '@mui/material';
@@ -10,23 +10,26 @@ import {
   TypeQuestion, QuestionValidation, QuestionValidationRequiredFieldCount,
 } from './types';
 import { RootState } from '../../store/root';
-import { AddQuestion } from '../../store/questions';
+import { AddQuestion } from '../../store/questions/thunks';
+import { useAppDispatch } from '../../store';
 
 function AddQuestionForm() {
   const { isLoading, error } = useSelector((state: RootState) => state.questions);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const f = useFormik({
     initialValues: {
-      text: '', email: '', carBrand: '', carModel: '',
+      name: '', text: '', email: '', carBrand: '', carModel: '',
     } as TypeQuestion,
     validationSchema: QuestionValidation,
     validateOnChange: false,
     validateOnBlur: false,
     onSubmit: async (values: TypeQuestion, { resetForm }) => {
-      dispatch(AddQuestion(values, resetForm));
+      await dispatch(AddQuestion(values)).unwrap();
+      resetForm();
     },
   });
-  const canSubmit = useMemo(() => QuestionValidationRequiredFieldCount
+  // noinspection PointlessBooleanExpressionJS
+  const canSubmit = useMemo(() => true || QuestionValidationRequiredFieldCount
     === Object.values(f.values).filter((x: string) => x.length > 0).length, [f]);
   const setProps = (valueKey: string | undefined, errorKey: string | undefined, name: string, label: string) => ({
     name,

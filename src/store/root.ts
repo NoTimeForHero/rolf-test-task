@@ -1,8 +1,9 @@
-import { combineReducers } from 'redux';
-import { questionReducer } from './questions';
+import { combineReducers } from '@reduxjs/toolkit';
+// import { questionReducer } from './questions';
+import questionsSlice from './questions/slice';
 
 export const rootReducer = combineReducers({
-  questions: questionReducer,
+  [questionsSlice.name]: questionsSlice.reducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
